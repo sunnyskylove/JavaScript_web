@@ -36,11 +36,11 @@
         Element.prototype.classList 프로퍼티는 class 어트리뷰트의 정보를 담은 DOMTokenList 객체 반환.
     </pre>
 
-    <div id="area"></div>
+    <div class="area"></div>
 
     <script>
         const $area = document.querySelector('.area');
-        console.log($area.className);       // 문자열 반환                  //////////// 이상하다....안된다;;;;
+        console.log($area.className);       // 문자열 반환                  
 
         // 클래스명을 덮어쓰게 되어 .area 가 제거된다
         // $area.className ='circle';
@@ -48,7 +48,7 @@
         console.log($area.classList);
 
         // *add(...className) <- 여러 개 가능하다., remove(...className)추가/제거 할 수 있다.
-        $area.classList.add('circle');              ///////////이것도 안나옴..ㅠㅠ
+        $area.classList.add('circle');                                      ///////////이것도 안나옴..ㅠㅠ
         $area.classList.add('lightgray');
 
         // 하나하나씩 꺼내기: item(index) 는 인수로 전달한 index 에 해당하는 클래스를 class 어트리뷰트에서 반환한다.
