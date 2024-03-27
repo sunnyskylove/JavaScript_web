@@ -21,7 +21,34 @@
         등록할 수 있으며, 이 때 이벤트 핸들러는 등록 순서대로 호출된다.
     </pre>
     
+    <button id="bts">클릭해보슈~</button>
+    
+    <script>
+        const $button = document.getElementById('bts');
 
+        // 이벤트타입 on 없이 'click', 'mouseover'
+        $button.addEventListener('click', function() {
+            alert('왜 클릭했어?');
+        } );
+
+        // 여러 개 등록해보기  - 프로퍼티 방식으로 추가
+        $button.onclick = () => console.log('프로퍼티 방식으로 추가');
+
+        // addEventListener 방식으로 하나 더 추가
+        $button.addEventListener('click', function() {
+            console.log('addEventListener 방식으로 추가');
+        });
+
+        // 참조가 동일한 이벤트 핸들러를 중복 등록하면?
+        const handleMouseover = function(){
+            console.log('button mouseover');
+        };
+
+        // 중복 된 이벤트 핸들러는 하나의 핸들러만 등록이 된다.
+        $button.addEventListener('mouseover', handleMouseover);     
+        $button.addEventListener('mouseover', handleMouseover);
+
+    </script>
 
 </body>
 </html>
