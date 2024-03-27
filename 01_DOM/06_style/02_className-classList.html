@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_className classList</title>
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px soild black;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .lightgray {
+            background-color: lightgray;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>02. className과 classList</h1>
+
+    <pre>
+        class 속성(어트리뷰트)에 대응하는 DOM 프로퍼티는 class가 아닌 className, classList 이다.
+        Element.prototype.className 프로퍼티는 setter 와 getter 모두 존재하는 접근자 프로퍼티로 
+        요소노드의 className 프로퍼티를 참조하면, class 속성의 값을 문자열로 반환하고,
+        요소노드의 className 프로퍼티에 문자열을 할당하면 class 어트리뷰트 값을 할당한 문자열로 바꿔준다.
+        Element.prototype.classList 프로퍼티는 class 어트리뷰트의 정보를 담은 DOMTokenList 객체 반환.
+    </pre>
+
+    <div id="area"></div>
+
+    <script>
+        const $area = document.querySelector('.area');
+        console.log($area.className);       // 문자열 반환                  //////////// 이상하다....안된다;;;;
+
+        // 클래스명을 덮어쓰게 되어 .area 가 제거된다
+        // $area.className ='circle';
+
+        console.log($area.classList);
+
+        // *add(...className) <- 여러 개 가능하다., remove(...className)추가/제거 할 수 있다.
+        $area.classList.add('circle');              ///////////이것도 안나옴..ㅠㅠ
+        $area.classList.add('lightgray');
+
+        // 하나하나씩 꺼내기: item(index) 는 인수로 전달한 index 에 해당하는 클래스를 class 어트리뷰트에서 반환한다.
+        console.log($area.classList.item(0));
+        console.log($area.classList.item(1));
+        console.log($area.classList.item(2));
+
+        // 포함하고 있는지 확인 : contains(className) 는 인수로 전달한 문자열과 일치하는 클래스가 class 어트리뷰트에 있는 지 확인
+        console.log($area.classList.contains('circle'));        //circle 담겨져 있는지 확인, true 로 나온다~~
+        console.log($area.classList.contains('circle2'));       // 없기 때문에 false
+
+        // 교체하기(2가지 인수 전달할 수 있다) : *replace(oldClassName, newClassName)
+        // 첫 번째 인수로 전달한 문자열을 두 번째 인수로 전달한 문자열로 변경한다.
+        $area.classList.replace('lightgray','yellow');       // (기존)lightgray -> (새롭게지정)yellow 변경!
+
+        // remove(className)와 비슷하다 : *toggle(className)
+        // toggle -> class 어트리뷰트에 인수로 전달한 문자열과 
+        //           일치하는 클래스가 있으면 제거하고, 없으면 추가해준다.
+
+        $area.classList.toString('yellow');     // 제거_위에서 yellow로 변경해서, 존재하는 목록임. 하지만, toggle 해서 사라짐!
+        $area.classList.toString('yellow');     // 다시 생성_존재하지 않으므로, 추가됨
+        
+        $area.classList.remove('yellow');       //삭제_일치하는 객체를 삭제하므로 단순제거
+    
+    </script>
+      
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_use css</title>
+<style>
+    .area {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+    <h1>04. CSS 선택자를 이용한 요소 노드 획득</h1>
+    <pre>
+        <b>Document.prototype/Element.prototype.querySelector</b>
+        메소드는 인수로 전달한 css 선택자를 만족시키는 하나의 요소
+        노드를 탐색하여 변환한다.
+    </pre>
+    <div class ="area">
+        <p>first</p>
+    </div>
+    <div class ="area">
+        <p>second</p>
+    </div>
+    <script>
+        // *querySelector 
+        // 1) DOM 전체에서 class 속성 값이 area 인 친구들 중 "1 번째"만 요소 노드 반환
+        const $area = document.querySelector(".area");
+        console.log($area);                  // first area 만 반환되서, first만 선택된다.
+        $area.style.backgroundColor = 'gray';
+
+        const $first = $area.querySelector('p');       // 자식요소인 p 태그를 불러오기
+        console.log($first);
+        $first.style.color = 'white';
+    </script>
+
+    <hr>
+    <pre>
+        <b>Document.prototype/Element.prototype.querySelectoryAll</b>
+        메소드는 인수로 전달한 css 선택자를 만족시키는 모든 요소
+        노드를 반환해준다.
+        여러 개의 요소 노드 객체를 갖는 DOM 컬렉션 객체인
+        NodeList 객체를 반환한다.
+    </pre>
+<ul id="list">
+    <li class="drink">커피</li>
+    <li class="drink">콜라</li>
+    <li class="food">김치찌개</li>
+    <li class="food">된장찌개</li>
+</ul>
+
+<script>
+    //querySelectAll
+    //NodeList 로 반환한다.
+    const $lists = document.querySelectorAll('ul > li');    // ul태그의 자손들(li) 가져오기
+    console.log($lists);        // - 유사 객체 배열, 이터러블
+    [...$lists].forEach(lists => list.style.backgroundColor= 'gray');       // 2번째의 커피~된장찌개 쪽이 변함
+
+    // lists 하위 요소 중 food라는 클래스를 가진 모든 요소 반환
+    const $foodLists = document.getElementById('list').querySelectorAll('.food')        //.을 넣어서 하위~
+    console.log($foodLists);
+    [...$foodLists].forEach(food => food.style.color = 'white');
+
+    // css 선택자를 만족시키는 요소가 존재하지 않는 경우
+    // 비어있는 NodeList 객체를 반환한다.
+
+</script>
+
+</body>
+</html>
