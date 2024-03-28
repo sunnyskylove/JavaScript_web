@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_navigator</title>
+</head>
+<body>
+    
+    <h1>02. navigator</h1>
+    <pre>
+        navigator 객체는 브라우저와 운영체제에 대한 정보를 제공한다.
+        다양한 프로퍼티를 가지고 있는데
+        가장 잘 알려진 프로퍼티는 현재 사용중인 브라우저 정보인
+        - navigator.usesrAgent
+        운영체제(windows, Linuxm Mac 등등)
+        - navigator.platform
+        이라는 것이 있다.
+    </pre>
+
+    <script>
+        for(prop in navigator) {            // navigator에 있는 프로퍼티가 뭐가 있는지 확인하기!
+            console.log(`${prop} : ${navigator[prop]}`);
+        }
+
+        console.log(navigator.userAgent);
+        console.log(navigator.platform);        
+    </script>
+
+</body>
+</html>
